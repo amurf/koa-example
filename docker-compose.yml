@@ -1,0 +1,13 @@
+version: "2"
+
+services:
+  backend:
+    command: node src/app.js
+    build: .
+    image: koa-example
+    volumes:
+      - ./:/koa-example
+    ports:
+      - 3456:80
+    environment:
+      deployment: testing
