@@ -3,18 +3,20 @@
   "version": "1.0.0",
   "description": "example koa app",
   "main": "index.js",
+  "repository": "amurf/koa-example",
   "dependencies": {
     "kcors": "^2.2.1",
     "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0",
     "koa-logger": "^3.1.0",
     "koa-router": "^7.3.0",
-    "koa-session": "^5.5.1"
+    "koa-session": "^5.5.1",
+    "pg-promise": "^7.3.2"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node src/app.js"
+    "start": "node src/app.js"
   },
   "author": "",
   "license": "ISC"
