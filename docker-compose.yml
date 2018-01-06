@@ -6,8 +6,24 @@ services:
     build: .
     image: koa-example
     volumes:
-      - ./:/koa-example
+      - "$PWD/src:/koa-example/src"
+    links:
+      - postgres
     ports:
       - 3456:80
     environment:
       deployment: testing
+      DB_URI: postgres://postgres:password@postgres:5432/koa-example
+  postgres:
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: koa-example
+  sqitch:
+    build:
+      context: ./sqitch
+    links:
+      - postgres
+    image: koa-example-sqitch
+    volumes:
+      - "$PWD/sqitch:/sqitch"
