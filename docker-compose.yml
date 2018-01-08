@@ -21,9 +21,11 @@ services:
       POSTGRES_DB: koa-example
   sqitch:
     build:
-      context: ./sqitch
+      context: "$PWD/sqitch"
     links:
       - postgres
     image: koa-example-sqitch
     volumes:
       - "$PWD/sqitch:/sqitch"
+    environment:
+      DB_URI: postgres://postgres:password@postgres:5432/koa-example
