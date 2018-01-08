@@ -11,7 +11,6 @@ const cors       = require('kcors');
 
 
 const config = require('./config');
-console.log(config);
 const app    = new Koa();
 
 const Router = require('koa-router');
@@ -29,6 +28,7 @@ app
 ;
 
 
+// DB usage example
 const db = require('./db');
 db.addClient('abc').then(function() {
   db.getClient(1).then(console.log);
