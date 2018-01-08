@@ -2,16 +2,24 @@ const pgp = require('pg-promise')(/* options */);
 const db  = pgp(process.env.DB_URI);
 
 module.exports = {
-  getForm: getForm,
-  addForm: addForm,
+  getClient: getClient,
+  addClient: addClient,
 };
 
-function getForm(id) {
-  let query = db.one('SELECT * FROM form WHERE id = ${id}', {id: id});
+function getClient(id) {
+  let query = db.one('SELECT * FROM client WHERE id = ${id}', {id: id});
   return doQuery(query);
 }
 
-function addForm(client, form) {
-  let query = db.one('INSERT INTO form(config) VALUES($1) RETURNING id', [form]);
+function addClient(name) {
+  let query = db.one('INSERT INTO client(name) VALUES($1) RETURNING id', [name]);
   return doQuery(query);
+}
+
+function doQuery(queryPromise) {
+  return queryPromise.catch(errorHandler);
+}
+
+function errorHandler(e) {
+  console.error(e)
 }
